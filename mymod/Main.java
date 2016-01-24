@@ -1,19 +1,37 @@
 package mymod;
 
+import java.awt.Color;
+
 import mymod.armor.MyArmor;
+import mymod.biome.MyBiome;
 import mymod.blocks.MyBlock;
 import mymod.blocks.MyBlockGen;
+import mymod.entity.ghast.MyEntityGhast;
+import mymod.entity.ghast.MyRenderGhast;
+import mymod.entity.minion.MyEntityMinion;
+import mymod.entity.minion.MyModelMinion;
+import mymod.entity.minion.MyRenderMinion;
 import mymod.items.MyFood;
 import mymod.items.MyItem;
 import mymod.items.MyPickaxe;
 import mymod.items.MySword;
 import mymod.proxies.CommonProxy;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityEggInfo;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.src.ModLoader;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
@@ -21,13 +39,9 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraftforge.common.MinecraftForge;
-
 
 /* 	MOD INFO */
 	@Mod( modid = "mymod", name = "i am a duck mod", version = "1.0")
@@ -48,8 +62,11 @@ public class Main {
     public static Item MySword_1;
     
 
-    //  DECLARE THE PICKAXE 
+    //  DECLARE THE KINGS PICKAXE 
     public static Item MyPickaxe_1;
+    
+    //  DECLARE THE JADE PICKAXE 
+    public static Item MyPickaxe_2;
 
     //  DECLARE NEW TOOL MATERIAL
     															/** harvest ability, max uses, efficiency (f), damage (f), enchantability */
@@ -77,6 +94,29 @@ public class Main {
     //  DECLARE THE ARMOR MATERIAL
    														/**maxDamageFactor, damageReductionAmountArray, enchantability*/
     public static EnumArmorMaterial MyArmorMaterial_1 = EnumHelper.addArmorMaterial("GemStone", 900000, new int[]{30, 80, 60, 30}, 900000000);
+    
+    
+//  DECLARE THE BIOME
+    public static  BiomeGenBase MyBiome_1;
+
+//  DECLARE THE MOB ID
+    static int MyEntityID = 300;
+
+//  SEARCH FOR UNIQUE ID    
+    public static int getUniqueEntityId() {
+        do {
+            MyEntityID++;
+        }
+        while (EntityList.getStringFromID(MyEntityID) != null);
+        return MyEntityID++;
+    }
+
+//  DECLARE A NEW EGG
+    public static void registerEntityEgg(Class <? extends Entity> entity, int primaryColor, int secondaryColor) {
+        int id = getUniqueEntityId();
+        EntityList.IDtoClassMapping.put(id, entity);
+        EntityList.entityEggs.put(id, new EntityEggInfo(id, primaryColor, secondaryColor));
+    }
 
     
 /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */	
@@ -98,7 +138,13 @@ public class Main {
         //  LOAD THE PICKAXE
         MyPickaxe_1 = new MyPickaxe(2022, MyToolMaterial, "MyPickaxe_1");
         GameRegistry.registerItem(MyPickaxe_1, "MyPickaxe_1");
-        LanguageRegistry.addName(MyPickaxe_1, "The Kings Pickaxe");  
+        LanguageRegistry.addName(MyPickaxe_1, "The Kings Pickaxe");
+        
+        
+        //  LOAD THE THE WORST PICKAXE EVER
+        MyPickaxe_2 = new MyPickaxe(26725, MyToolMaterial, "MyPickaxe_2");
+        GameRegistry.registerItem(MyPickaxe_2, "MyPickaxe_2");
+        LanguageRegistry.addName(MyPickaxe_2, "The Jade Pickaxe");
         
         //  LOAD THE ITEM
         MyItem_1 = new MyItem(2030, "MyItem_1").setCreativeTab(CreativeTabs.tabCombat).setMaxStackSize(15);
@@ -138,7 +184,49 @@ public class Main {
 	        MyBoots_1 = new MyArmor(2063, MyArmorMaterial_1, 0, 3, "myarmor");
 	        GameRegistry.registerItem(MyBoots_1, "MyBoots_1");
 	        LanguageRegistry.addName(MyBoots_1, "Emerald Boots");
-
+	        
+	    //  LOAD BIOME
+	        MyBiome_1 = new MyBiome(30);
+	        GameRegistry.addBiome(MyBiome_1);
+	        
+	//  REMOVE OTHER BIOMES
+	        GameRegistry.removeBiome(BiomeGenBase.beach);
+	        GameRegistry.removeBiome(BiomeGenBase.desert);
+	        GameRegistry.removeBiome(BiomeGenBase.desertHills);
+	        GameRegistry.removeBiome(BiomeGenBase.desertHills);
+	        GameRegistry.removeBiome(BiomeGenBase.extremeHills);
+	        GameRegistry.removeBiome(BiomeGenBase.extremeHillsEdge);
+	        GameRegistry.removeBiome(BiomeGenBase.forest);
+	        GameRegistry.removeBiome(BiomeGenBase.forestHills);
+	        GameRegistry.removeBiome(BiomeGenBase.frozenOcean);
+	        GameRegistry.removeBiome(BiomeGenBase.frozenRiver);
+	        GameRegistry.removeBiome(BiomeGenBase.iceMountains);
+	        GameRegistry.removeBiome(BiomeGenBase.icePlains);
+	        GameRegistry.removeBiome(BiomeGenBase.jungle);
+	        GameRegistry.removeBiome(BiomeGenBase.jungleHills);
+	        GameRegistry.removeBiome(BiomeGenBase.mushroomIsland);
+	        GameRegistry.removeBiome(BiomeGenBase.ocean);
+	        GameRegistry.removeBiome(BiomeGenBase.plains);
+	        GameRegistry.removeBiome(BiomeGenBase.river);
+	        GameRegistry.removeBiome(BiomeGenBase.swampland);
+	        GameRegistry.removeBiome(BiomeGenBase.taiga);
+	        GameRegistry.removeBiome(BiomeGenBase.taigaHills);
+	        
+	    //  REGISTER YOUR ENTITY
+	        EntityRegistry.registerGlobalEntityID(MyEntityGhast.class, "Eyes Of The King", EntityRegistry.findGlobalUniqueEntityId());
+	        EntityRegistry.addSpawn(MyEntityGhast.class, 50, 100, 500, EnumCreatureType.monster, BiomeGenBase.desert);
+	        EntityRegistry.addSpawn(MyEntityGhast.class, 50, 1, 5, EnumCreatureType.monster, MyBiome_1);     
+	        registerEntityEgg(MyEntityGhast.class, (new Color(0, 0, 0)).getRGB(), (new Color(0, 0, 255)).getRGB());
+	        RenderingRegistry.registerEntityRenderingHandler(MyEntityGhast.class, new MyRenderGhast());
+	        ModLoader.addLocalization("entity.Eyes Of The King.name", "Eyes Of The King");
+	        
+	    //  REGISTER YOUR ENTITY
+	        EntityRegistry.registerGlobalEntityID(MyEntityMinion.class, "Spy", EntityRegistry.findGlobalUniqueEntityId());
+	        EntityRegistry.addSpawn(MyEntityMinion.class, 35, 1, 3, EnumCreatureType.creature, MyBiome_1);     
+	        //EntityRegistry.addSpawn(MyEntityMinion.class, 50, 1, 5, EnumCreatureType.monster, MyBiome_1);  
+	        registerEntityEgg(MyEntityMinion.class, (new Color(104, 104, 104)).getRGB(), (new Color(255, 0, 0)).getRGB());
+	        RenderingRegistry.registerEntityRenderingHandler(MyEntityMinion.class, new MyRenderMinion(new MyModelMinion(), 0.3F));
+	        ModLoader.addLocalization("entity.Spy.name", "Spy");
         
 /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */	
 
@@ -166,6 +254,18 @@ public class Main {
         
         
         //  PICKAXE RECIPE  
+            GameRegistry.addRecipe(new ItemStack(MyPickaxe_1, 1), new Object[]
+            {
+                    "XXX",
+                    " S ",
+                    " S ",
+                'S', Item.stick,
+                'X', MyItem_1,
+            }); 
+            
+            
+            
+            //  PICKAXE RECIPE  
             GameRegistry.addRecipe(new ItemStack(MyPickaxe_1, 1), new Object[]
             {
                     "XXX",

@@ -20,7 +20,7 @@ public class MyBiome extends BiomeGenBase
         this.theBiomeDecorator.bigMushroomsPerChunk = 10;
         this.theBiomeDecorator.treesPerChunk = 5;
 
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityMooshroom.class, 25, 4, 8));
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityMooshroom.class, 1, 6, 1));
         
         this.setMinMaxHeight(0.1F, 0.5F);
         this.setTemperatureRainfall(1.5F, 0.2F);

@@ -22,7 +22,7 @@ public class MyBlockGen implements IWorldGenerator {
 
 
     private void generateSurface(World world, Random random, int BlockX, int BlockZ) {
-        for(int i =0; i<5; i++){ 
+        for(int i =0; i<10; i++){ 
             int Xcoord = BlockX + random.nextInt(16);
             int Zcoord = BlockZ + random.nextInt(16);
             int Ycoord = random.nextInt(256); 
