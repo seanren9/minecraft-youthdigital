@@ -1,0 +1,91 @@
+package mymod.structures;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import api.ModAPI;
+import api.Structure;
+import mymod.Main;
+import mymod.dimension.MyDimensionBiome_1;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.IChunkProvider;
+
+public class MyStructure_1 extends Structure {
+
+public List<BiomeGenBase> biomesToGenIn;
+    
+    public void initStructure() {
+        biomesToGenIn = new ArrayList<BiomeGenBase>();
+        
+        //Generation
+        biomesToGenIn.add(Main.MyDimensionBiome_1);
+        biomesToGenIn.add(BiomeGenBase.mushroomIsland);
+        setChanceToGenerateInChunk(1);
+        
+        //Schematic
+        setStructureShape (new Object[] {
+                
+           
+            "XXXXXXX",
+            "XXXXXXX",
+            "XXX XXX",
+            "XXX XXX", SLICE,
+            
+            "XXXXXXX",
+            "X     X",
+            "X     X",
+            "X     X", SLICE,
+            
+            "XXXXXXX",
+            "X     X",
+            "X     X",
+            "X     X", SLICE,
+            
+            "XXXXXXX",
+            "X     X",
+            "X     X",
+            "X     X", SLICE,
+            
+            "XXXXXXX",
+            "XXXXXXX",
+            "XXXXXXX",
+            "XXXXXXX",
+              
+              
+            'X', Block.brick,
+            
+        });
+        
+    }
+    
+    @Override
+	public void generate(Random random, int chunkX, int chunkZ, World world,
+			IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+		
+		Random ydRandom = new Random();
+		int rotation = ydRandom.nextInt(5);
+		
+		float chance = getChanceToGenerateInChunk() / 100F;
+		
+		if (ydRandom.nextFloat() <= chance) {
+			int xCoord = (chunkX * 16) + ydRandom.nextInt(16);
+			int zCoord = (chunkZ * 16) + ydRandom.nextInt(16);
+			int yCoord = getBiomeTopBlock(world, xCoord, zCoord);
+			
+			if (yCoord != -1) {
+				BiomeGenBase biome = world.getBiomeGenForCoords(xCoord, zCoord);
+				if (biomesToGenIn.contains(biome)) {
+					if (ModAPI.getClosestStructureDist(world, xCoord, yCoord, zCoord) > 20) {
+						generateStructure(ydRandom, xCoord, yCoord, zCoord, world, rotation);
+					}
+				}
+			}
+		}
+	}
+
+}

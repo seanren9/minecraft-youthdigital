@@ -1,0 +1,6 @@
+//   REGISTER THE PROJECTILE ENTITY
+     EntityRegistry.registerGlobalEntityID(MyEntityProjectile.class, "MyProjectile_1", 1);
+     EntityRegistry.registerModEntity(MyEntityProjectile.class, "MyProjectile_1", 1, this, 256, 1, true);
+     LanguageRegistry.instance().addStringLocalization("entity.modid.MyProjectile_1.name", "My Awesome Projectile");
+     RenderingRegistry.registerEntityRenderingHandler(MyEntityProjectile.class, new MyRenderProjectile(MyProjectile_1));
+     

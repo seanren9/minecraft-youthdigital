@@ -1,0 +1,32 @@
+
+        Minecraft Text Formatting Codes 
+
+**********************************************************************
+    Text Color
+**********************************************************************
+    \u00A70 - Black 
+    \u00A71 - Dark Blue
+    \u00A72 - Dark Green
+    \u00A73 - Dark Aqua
+    \u00A74 - Dark Red
+    \u00A75 - Dark Purple
+    \u00A76 - Gold
+    \u00A77 - Gray
+    \u00A78 - Dark Gray
+    \u00A79 - Blue
+    \u00A7a - Green
+    \u00A7b - Aqua
+    \u00A7c - Red
+    \u00A7d - Light Purple
+    \u00A7e - Yellow
+    \u00A7f - White
+
+**********************************************************************
+    Text Formatting
+**********************************************************************
+    \u00A7k  Obfuscated
+    \u00A7l  Bold
+    \u00A7m  Strikethrough
+    \u00A7n  Underline
+    \u00A7o  Italic
+    \u00A7r  Reset

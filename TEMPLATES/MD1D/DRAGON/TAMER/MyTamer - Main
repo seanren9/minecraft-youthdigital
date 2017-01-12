@@ -1,0 +1,30 @@
+**********************************************************************
+  DECLARATION SECTION
+**********************************************************************
+
+    //  DECLARE THE TAMER
+        public static Item MyTamer_1;
+    
+    
+**********************************************************************
+  LOAD SECTION
+**********************************************************************
+
+    //  LOAD THE TAMER
+        MyTamer_1 = new MyTamer(4030, "MyTamer_1");
+        GameRegistry.registerItem(MyTamer_1, "MyTamer_1");
+        LanguageRegistry.addName(MyTamer_1, "My Awesome Tamer");
+    
+
+**********************************************************************
+  RECIPES SECTION
+**********************************************************************
+
+    //  TAMER RECIPE         
+        GameRegistry.addRecipe(new ItemStack(MyTamer_1, 1), new Object[]
+        {
+                "S S",
+                " S ",
+                " S ",
+            'S', Item.stick,
+        });

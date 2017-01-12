@@ -1,0 +1,18 @@
+**********************************************************************
+  DECLARATION SECTION
+**********************************************************************
+
+    //  DECLARE THE FIREBALL
+        public static Item MyFireball_1;
+
+***********************************************************************
+    LOAD SECTION
+***********************************************************************
+    
+    //  LOAD THE FIREBALL
+        MyFireball_1 = new MyFireball(3031, "MyFireball_1");
+        GameRegistry.registerItem(MyFireball_1, "MyFireball_1");
+        EntityRegistry.registerGlobalEntityID(MyEntityFireball.class, "MyEntityFireball", EntityRegistry.findGlobalUniqueEntityId());
+        EntityRegistry.registerModEntity(MyEntityFireball.class, "MyEntityFireball", 2, this, 256, 1, true);
+        LanguageRegistry.instance().addStringLocalization("entity.modid.MyEntityFireball.name", "Dragon Fireball");
+        RenderingRegistry.registerEntityRenderingHandler(MyEntityFireball.class, new MyRenderFireball());

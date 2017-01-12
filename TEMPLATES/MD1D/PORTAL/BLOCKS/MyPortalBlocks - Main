@@ -1,0 +1,37 @@
+**********************************************************************
+  DECLARATION SECTION
+**********************************************************************
+    
+    //  DECLARE THE PORTAL BLOCKS
+        public static Block MyPortalBlock_1;
+        public static Block MyFrameBlock_1;
+    
+    //  DECLARE THE PORTAL STRUCTURE
+        public static Structure MyPortal_1;
+        
+**********************************************************************
+  LOAD SECTION
+**********************************************************************
+
+    //  LOAD THE PORTAL BLOCK
+        MyPortalBlock_1 = new MyPortalBlock_1(2101, "MyPortalBlock_1");
+        GameRegistry.registerBlock(MyPortalBlock_1, "MyPortalBlock_1");
+    
+    //  LOAD THE FRAME BLOCK
+        MyFrameBlock_1 = new MyFrameBlock_1(2102, Material.rock, "MyFrameBlock_1");
+        GameRegistry.registerBlock(MyFrameBlock_1, "MyFrameBlock_1");
+        LanguageRegistry.addName(MyFrameBlock_1, "My Awesome Frame Block");
+    
+**********************************************************************
+  RECIPES SECTION
+**********************************************************************
+
+    //  PORTAL FRAME BLOCK RECIPE
+        GameRegistry.addRecipe(new ItemStack(MyFrameBlock_1, 1), new Object[]
+        {
+                "   ",
+                " RR",
+                " RR",
+              'R', Item.blazeRod,
+        });
+    

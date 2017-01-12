@@ -1,0 +1,19 @@
+**********************************************************************
+  DECLARATION SECTION
+**********************************************************************
+    
+    
+    //  DECLARE THE STRUCTURE
+        public static Structure MyStructure_1;
+    
+    
+**********************************************************************
+  EXTRA METHODS SECTION - NEEDS TO BE BETWEEN BIOME AND WORLD PROVIDER
+**********************************************************************
+    
+    
+    //  REGISTER THE STRUCTURE
+        MyStructure_1 = new MyStructure_1();
+        GameRegistry.registerWorldGenerator(MyStructure_1);
+    
+    

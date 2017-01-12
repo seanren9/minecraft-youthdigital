@@ -1,0 +1,34 @@
+**********************************************************************
+  DECLARATION SECTION
+**********************************************************************
+
+    
+    //  DECLARE THE PLACER
+        public static Item MyPlacer_1;
+
+        
+**********************************************************************
+  LOAD SECTION
+**********************************************************************
+
+    //  LOAD THE PLACER
+        MyPlacer_1 = new MyPlacer(2103, "MyPlacer_1");
+        GameRegistry.registerItem(MyPlacer_1, "MyPlacer_1");
+        LanguageRegistry.addName(MyPlacer_1, "My Awesome Placer");
+    
+    
+**********************************************************************
+  RECIPES SECTION
+**********************************************************************
+
+    //  PLACER RECIPE
+        GameRegistry.addRecipe(new ItemStack(MyPlacer_1, 1), new Object[]
+        {
+                " S ",
+                "RSR",
+                " S",
+              'S', Item.stick,
+              'R', Item.blazeRod,
+        });
+    
+        

@@ -1,0 +1,28 @@
+**********************************************************************
+  DECLARATION SECTION
+**********************************************************************
+
+
+    //  DECLARE THE DIMENSION BLOCK
+        public static Block MyDimensionBlock_1;
+
+    
+**********************************************************************
+  LOAD SECTION
+**********************************************************************
+
+
+    //  LOAD THE DIMENSION BLOCK 
+        MyDimensionBlock_1 = new MyDimensionBlock(180, Material.rock, "MyDimensionBlock_1");
+        GameRegistry.registerBlock(MyDimensionBlock_1, "MyDimensionBlock_1");
+        LanguageRegistry.addName(MyDimensionBlock_1, "My Dimension Block"); 
+		MinecraftForge.setBlockHarvestLevel(MyDimensionBlock_1, "pickaxe", 0);
+
+
+**********************************************************************
+  RECIPES SECTION
+**********************************************************************
+        
+    //  SMELTING RECIPE
+        GameRegistry.addSmelting(MyDimensionBlock_1.blockID, (new ItemStack(Item.cookie, 1)), 10);
+         

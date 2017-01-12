@@ -1,0 +1,94 @@
+    //  Restaurant Schematic
+                
+                
+                
+            "                                       ",
+            "                                       ",
+            "                                       ",
+            "                                       ",
+            "                                       ",
+            "   B   B   B   B   B   B   B   B  SSS  ", SLICE,   
+                    
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "XYGGGYGGGYGGGYGGGYGGGYGGGYGGGYGGGY   YX",
+            "XYGGGYGGGYGGGYGGGYGGGYGGGYGGGYGGGY   YX",
+            "XYGGGYGGGYGGGYGGGYGGGYGGGYGGGYGGGY   YX",
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", SLICE,
+        
+
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "X                                     X",
+            "X                                     X",
+            "X  -   -   -   -   -   -   -   -      X",
+            "X RTL RTL RTL RTL RTL RTL RTL RTL     X",
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", SLICE,
+            
+            
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "X                                     X",
+            "X                                     X",
+            "X  -   -   -   -   -   -   -   -      X",
+            "X RTL RTL RTL RTL RTL RTL RTL RTL     X",
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", SLICE,
+            
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "X                                     X",
+            "X                                     X",
+            "X                                     X",
+            "X                                     X",
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", SLICE,
+            
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "X                                     X",
+            "X                                     X",
+            "X                                     X",
+            "X                                     X",
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", SLICE,
+            
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "X                                     X",
+            "X                                     X",
+            "X                                     X",
+            "X                                     X",
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", SLICE,
+            
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "X                                     X",
+            "X                                     X",
+            "X                                     X",
+            "XCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC  CCCX",
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", SLICE,
+            
+           "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "X                                     X",
+            "X                                     X",
+            "X                                     X",
+            "X                                     X",
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", SLICE,
+            
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "X                                     X",
+            "X                                     X",
+            "X                                     X",
+            "X                                     X",
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", SLICE,
+            
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "XYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYX",
+            "XYGGGYGGGYGGGYGGGYGGGYGGGYGGGYGGGYGGGYX",
+            "XYGGGYGGGYGGGYGGGYGGGYGGGYGGGYGGGYGGGYX",
+            "XYGGGYGGGYGGGYGGGYGGGYGGGYGGGYGGGYGGGYX",
+            "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            
+            'B', Block.sapling,
+            'S', Block.stairsWoodOak, FRONT,
+            'L', Block.stairsWoodOak, LEFT,
+            'R', Block.stairsWoodOak, RIGHT,
+            'X', Block.planks,
+            'Y', Block.wood,
+            'G', Block.thinGlass,
+            'T', Block.fence,
+            '-', Block.pressurePlatePlanks,
+            'C', Block.stone,
+            

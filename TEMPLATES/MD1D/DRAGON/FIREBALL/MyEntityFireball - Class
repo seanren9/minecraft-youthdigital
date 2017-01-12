@@ -1,0 +1,86 @@
+package mymod.dragon.fireball;
+
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityDragonPart;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
+
+public class MyEntityFireball extends EntityThrowable
+{
+    public MyEntityFireball(World par1World)
+    {
+        super(par1World);
+    }
+
+    public MyEntityFireball(World par1World, EntityLivingBase par2EntityLivingBase)
+    {
+        super(par1World, par2EntityLivingBase);
+        
+        //faster and inverted except for y
+        this.motionX *= -2;
+        this.motionY = par2EntityLivingBase.motionY * 3D - 0.1D;
+        this.motionZ *= -2;
+        
+        //make fire closer to dragons mouth
+        this.posY -= 5.9D;
+        this.posX += this.motionX * 3.5D;
+        this.posZ += this.motionZ * 3.5D;
+    }
+
+    public MyEntityFireball(World par1World, double par2, double par4, double par6)
+    {
+        super(par1World, par2, par4, par6);
+    }
+
+    /**
+     * Called when this EntityThrowable hits a block or entity.
+     */
+    protected void onImpact(MovingObjectPosition par1MovingObjectPosition)
+    {
+        boolean destroy = false;
+        if (par1MovingObjectPosition.entityHit != null)
+        {
+            //hurt if fireball isnt hitting dragon or whats riding it
+            if (par1MovingObjectPosition.entityHit != getThrower() && !(par1MovingObjectPosition.entityHit instanceof EntityDragonPart) && (getThrower().riddenByEntity == null || getThrower().riddenByEntity != par1MovingObjectPosition.entityHit)) {
+                float damage = 20;
+    
+                par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
+                
+                destroy = true;
+            }
+        } else {
+            
+            //set fire to ground it hits
+            if (worldObj.getBlockId(par1MovingObjectPosition.blockX, par1MovingObjectPosition.blockY+1, par1MovingObjectPosition.blockZ) == 0) {
+                worldObj.setBlock(par1MovingObjectPosition.blockX, par1MovingObjectPosition.blockY+1, par1MovingObjectPosition.blockZ, Block.fire.blockID);
+            }
+        
+            destroy = true;
+        }
+        
+        //runs when entity is destroyed
+        if (destroy) {
+            
+            for (int i = 0; i < 8; ++i)
+            {
+                //spawn a number of particles
+                this.worldObj.spawnParticle("", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            }
+    
+            if (!this.worldObj.isRemote)
+            {
+                // remove from world
+                this.setDead();
+            }
+        }
+    }
+    
+    private void explode()
+    {
+        float explosionSize = 12.5F;
+        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, explosionSize, true);
+    }
+}

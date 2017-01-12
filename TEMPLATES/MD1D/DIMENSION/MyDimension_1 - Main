@@ -1,0 +1,21 @@
+**********************************************************************
+  DECLARATION SECTION
+**********************************************************************
+
+
+    //  DECLARE THE DIMENSION BIOME
+        public static BiomeGenBase MyDimensionBiome_1;
+
+    
+**********************************************************************
+  EXTRA SECTION
+**********************************************************************
+
+
+    //  REGISTER THE DIMENSION BIOME
+        MyDimensionBiome_1 = new MyDimensionBiome_1(40);
+
+    //  REGISTER WORLD PROVIDER
+        DimensionManager.registerProviderType(MyDimensionID_1, MyWorldProvider_1.class, true);
+        DimensionManager.registerDimension(MyDimensionID_1, MyDimensionID_1);
+

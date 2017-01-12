@@ -1,0 +1,28 @@
+package mymod.dragon.fireball;
+
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.item.Item;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+
+public class MyFireball extends Item {
+    
+    private String texturePath = "mydimensionmod:";
+    
+    public MyFireball(int ItemID, String textureName)
+    {
+        super(ItemID);
+        this.setUnlocalizedName(textureName);
+        texturePath += textureName;
+    }
+
+    @Override   
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister iconRegister)
+    {
+        this.itemIcon = iconRegister.registerIcon(texturePath);
+    }
+
+
+}
